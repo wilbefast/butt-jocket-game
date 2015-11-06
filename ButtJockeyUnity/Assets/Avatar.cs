@@ -14,6 +14,11 @@ public class Avatar : MonoBehaviour
 
 	float life = 1.0f;
 
+	bool IsDead()
+	{
+		return (transform.position.y < 0f);
+	}
+
 	void Start()
 	{
 		cameraOffset = transform.position - Camera.main.transform.position;
@@ -38,8 +43,10 @@ public class Avatar : MonoBehaviour
 		// One avatar calcules who is the winner
 		if (master == this) 
 		{
-			leader = FindObjectsOfType<Avatar>().OrderBy(
-				a => a.transform.position.y < 0f ? -float.MaxValue : a.transform.position.z ).Last();
+			var avatars = FindObjectsOfType<Avatar>().Where(a => !a.IsDead());
+			if(avatars.Any())
+				leader = avatars.OrderBy(a => a.transform.position.z ).Last();
+			else leader = null;
 		}
 
 		// The winner controls the camera
@@ -69,8 +76,16 @@ public class Avatar : MonoBehaviour
 					// death and respawn
 					life = 1f;
 
-					transform.position = leader.transform.position - Vector3.forward;
-					GetComponent<Rigidbody>().velocity = leader.GetComponent<Rigidbody>().velocity;
+					// maybe leader is also dead
+					if(leader != null)
+					{
+						transform.position = leader.transform.position - Vector3.forward;
+						GetComponent<Rigidbody>().velocity = leader.GetComponent<Rigidbody>().velocity;
+					}
+					else
+					{
+						Debug.LogWarning("Everyone has fallen off!");
+					}
 				}
 			}
 		}
