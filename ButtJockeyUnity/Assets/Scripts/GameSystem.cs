@@ -12,12 +12,14 @@ public class GameSystem : MonoBehaviour {
 	private int player2Score = 0;
 
 	public UnityEngine.UI.Text countdownText;
+	public UnityEngine.UI.Text victoryText;
 	private int countdownValue = 3;
 
 	public GameObject player1;
 	public GameObject player2;
 
 	private float pongValue = 0f;
+	///private bool gameEnded = false;
 	
 
 	// Use this for initialization
@@ -26,7 +28,6 @@ public class GameSystem : MonoBehaviour {
 		Menu menu = GameObject.Find ("race container").GetComponent<Menu> ();
 		Instantiate(menu.raceList[menu.currentRace],Vector3.zero,Quaternion.identity);
 		Destroy (menu.gameObject);
-
 
 		this.player1Score = Mathf.RoundToInt(this.totalPoint / 2);
 		this.player2Score = Mathf.RoundToInt(this.totalPoint / 2);
@@ -45,8 +46,6 @@ public class GameSystem : MonoBehaviour {
 
 	public void UpdateScore(string player)
 	{
-
-
 		if (player == "Player1") {
 			this.player1Score--;
 			this.player2Score++;
@@ -55,7 +54,13 @@ public class GameSystem : MonoBehaviour {
 				this.pointCounters[this.totalPoint - this.player2Score].sprite = this.p2points;
 
 			if (this.player2Score == this.totalPoint)
+			{
+				//active players
+				player1.GetComponent<Avatar>().active = false;
+				player2.GetComponent<Avatar>().active = false;
 				Debug.Log("Victory P2");
+				StartCoroutine(Victory(player));
+			}
 		}
 		else if (player == "Player2") {
 			this.player2Score--;
@@ -65,11 +70,25 @@ public class GameSystem : MonoBehaviour {
 				this.pointCounters[this.player1Score -1].sprite = this.p1points;
 
 			if (this.player1Score == this.totalPoint)
+			{
+				//active players
+				player1.GetComponent<Avatar>().active = false;
+				player2.GetComponent<Avatar>().active = false;
 				Debug.Log("Victory P1");
+				StartCoroutine(Victory(player));
+			}
 		}
+	}
 
-		//check victory
-			
+	IEnumerator Victory(string player)
+	{
+		//gameEnded = true;
+		victoryText.text = player + " wins!";
+		victoryText.gameObject.SetActive(true);
+
+		yield return new WaitForSeconds (3f);
+
+		Application.LoadLevel ("menu");
 	}
 
 	IEnumerator CountdownBlinck()
