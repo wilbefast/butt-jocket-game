@@ -19,6 +19,7 @@ public class GameSystem : MonoBehaviour {
 	public GameObject player2;
 
 	private float pongValue = 0f;
+	private bool destructingCountdown = false;
 	///private bool gameEnded = false;
 	
 
@@ -94,8 +95,8 @@ public class GameSystem : MonoBehaviour {
 	IEnumerator CountdownBlinck()
 	{
 		while(this.countdownText != null) {
-			this.countdownText.fontSize = Mathf.RoundToInt(80 - Mathf.PingPong(pongValue,30));
-			pongValue += 2.5f;
+			this.countdownText.fontSize = Mathf.RoundToInt(150 - Mathf.PingPong(pongValue,100));
+			pongValue += 5f;
 
 			yield return new WaitForSeconds(0.01f);
 		}
@@ -115,13 +116,27 @@ public class GameSystem : MonoBehaviour {
 		player1.GetComponent<Avatar>().active = true;
 		player2.GetComponent<Avatar>().active = true;
 
+
+	}
+
+	IEnumerator DestroyCountdown()
+	{
+		yield return new WaitForSeconds (0.25f);
 		Destroy (this.countdownText.gameObject);
 	}
 
 	void OnGUI()
 	{
 		if (this.countdownText != null)
-			this.countdownText.text = this.countdownValue.ToString ();
+		{
+			this.countdownText.text = this.countdownValue > 0 ? this.countdownValue.ToString () : "GO!";
+
+			if (this.countdownValue <= 0 && !destructingCountdown)
+			{
+				destructingCountdown = true;
+				StartCoroutine("DestroyCountdown");
+			}
+		}
 	}
 	
 	// Update is called once per frame
