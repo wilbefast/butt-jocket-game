@@ -4,8 +4,17 @@ using System.Linq;
 
 public class Avatar : MonoBehaviour 
 {
-	public float ForwardSpeed = 3f;
+	public bool boostActive = false;
 
+	public int playerID;
+	public float value;
+	
+	public float accelerationGain = 15f;
+	public float maxAcceleration = 30f;
+	public float impulseBoost = 5f;
+
+	private bool didBoost = false;
+	
 	public float SideSpeed = 3f;
 
 	Vector3 cameraOffset;
@@ -37,7 +46,32 @@ public class Avatar : MonoBehaviour
 
 		return new Vector2(x, 0f);
 	}
+
 	
+	// Update is called once per frame
+	void Update()
+	{
+		//catch input
+		if (Input.GetButtonDown ("Spank" + playerID)) 
+		{
+			if (this.value < 0f)
+				this.value = 0f;
+			
+			this.value += (this.maxAcceleration - this.value) * 0.5f; // do it log;
+			
+			if (this.boostActive)
+				this.didBoost = true;
+		}
+	}
+	
+	void LateUpdate()
+	{
+		if (this.value > 0f)
+		{
+			if (this.GetComponent<Rigidbody>().velocity.z > 0) this.value -= 1f; // do it log;
+		}
+	}
+
 	void FixedUpdate () 
 	{
 		// One avatar calcules who is the winner
@@ -90,9 +124,18 @@ public class Avatar : MonoBehaviour
 			}
 		}
 
-		var dir = GetControlDirection ();
 		var body = GetComponent<Rigidbody> ();
-		body.AddForce (transform.parent.forward * ForwardSpeed, ForceMode.Acceleration);
+
+		// sideways
+		var dir = GetControlDirection ();
 		body.AddForce (transform.parent.right * dir.x * SideSpeed, ForceMode.Acceleration);
+
+		// forwards
+		body.AddForce (transform.parent.forward * this.value, ForceMode.Acceleration);
+
+		// boosts
+		if (this.didBoost)
+			body.AddForce (transform.parent.forward * this.impulseBoost, ForceMode.Impulse);
+		this.didBoost = false;
 	}
 }
