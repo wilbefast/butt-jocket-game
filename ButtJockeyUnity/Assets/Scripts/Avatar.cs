@@ -4,6 +4,7 @@ using System.Linq;
 
 public class Avatar : MonoBehaviour 
 {
+	public bool active = false;
 	public bool boostActive = false;
 
 	public int playerID;
@@ -42,6 +43,9 @@ public class Avatar : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if (!this.active)
+			return;
+
 		//catch input
 		if (Input.GetButtonDown ("RightSpank" + playerID) || Input.GetButtonDown ("LeftSpank" + playerID)) 
 		{
@@ -101,6 +105,9 @@ public class Avatar : MonoBehaviour
 				life = Mathf.Clamp01(life - Time.fixedDeltaTime);
 				if(life == 0f)
 				{
+					//score progress
+					Camera.main.GetComponent<GameSystem>().UpdateScore("Player"+this.playerID);
+
 					// death and respawn
 					life = 1f;
 
