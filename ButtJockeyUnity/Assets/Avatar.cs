@@ -7,13 +7,15 @@ public class Avatar : MonoBehaviour
 	public bool boostActive = false;
 
 	public int playerID;
-	public float value;
+
 	
 	public float accelerationGain = 15f;
 	public float maxAcceleration = 30f;
 	public float impulseBoost = 5f;
 
 	private bool didBoost = false;
+	private float value;
+	private Vector2 dir;
 	
 	public float SideSpeed = 3f;
 
@@ -36,32 +38,24 @@ public class Avatar : MonoBehaviour
 			master = this;
 	}
 
-	Vector2 GetControlDirection()
-	{
-		float x;
-		if(master == this)
-			x = (Input.GetKey(KeyCode.LeftArrow) ? -1f : 0f) + (Input.GetKey(KeyCode.RightArrow) ? 1f : 0f);
-		else
-			x = (Input.GetKey(KeyCode.Q) ? -1f : 0f) + (Input.GetKey(KeyCode.D) ? 1f : 0f);
-
-		return new Vector2(x, 0f);
-	}
-
 	
 	// Update is called once per frame
 	void Update()
 	{
 		//catch input
-		if (Input.GetButtonDown ("Spank" + playerID)) 
+		if (Input.GetButtonDown ("RightSpank" + playerID) || Input.GetButtonDown ("LeftSpank" + playerID)) 
 		{
 			if (this.value < 0f)
 				this.value = 0f;
 			
 			this.value += (this.maxAcceleration - this.value) * 0.5f; // do it log;
-			
+
+			dir = new Vector2((Input.GetButtonDown("RightSpank"+this.playerID) ? -1f : 0f) + (Input.GetButtonDown("LeftSpank"+this.playerID) ? 1f : 0f),0f);
+
 			if (this.boostActive)
 				this.didBoost = true;
 		}
+		 
 	}
 	
 	void LateUpdate()
@@ -127,7 +121,6 @@ public class Avatar : MonoBehaviour
 		var body = GetComponent<Rigidbody> ();
 
 		// sideways
-		var dir = GetControlDirection ();
 		body.AddForce (transform.parent.right * dir.x * SideSpeed, ForceMode.Acceleration);
 
 		// forwards
