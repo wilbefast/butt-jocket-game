@@ -24,7 +24,12 @@ public class Avatar : MonoBehaviour
 
 	Vector2 GetControlDirection()
 	{
-		var x = (Input.GetKey(KeyCode.LeftArrow) ? -1f : 0f) + (Input.GetKey(KeyCode.RightArrow) ? 1f : 0f);
+		float x;
+		if(master == this)
+			x = (Input.GetKey(KeyCode.LeftArrow) ? -1f : 0f) + (Input.GetKey(KeyCode.RightArrow) ? 1f : 0f);
+		else
+			x = (Input.GetKey(KeyCode.Q) ? -1f : 0f) + (Input.GetKey(KeyCode.D) ? 1f : 0f);
+
 		return new Vector2(x, 0f);
 	}
 	
@@ -57,15 +62,15 @@ public class Avatar : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log(name + " is not visible");
-
 				// lose life
-				life = Mathf.Clamp01(life + Time.fixedDeltaTime);
+				life = Mathf.Clamp01(life - Time.fixedDeltaTime);
 				if(life == 0f)
 				{
-					// death
-					Debug.Log(name + " has fallen behind");
+					// death and respawn
 					life = 1f;
+
+					transform.position = leader.transform.position - Vector3.forward;
+					GetComponent<Rigidbody>().velocity = leader.GetComponent<Rigidbody>().velocity;
 				}
 			}
 		}
