@@ -2,13 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 3
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: track
   m_Shader: {fileID: 4800000, guid: e6b1eadc1ae8087448e68181e5b9cf31, type: 3}
-  m_ShaderKeywords: []
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -16,8 +19,8 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 58ffd58b0eb966b469c3fac8c32001bf, type: 3}
-          m_Scale: {x: 1, y: -1}
+          m_Texture: {fileID: 2800000, guid: 71916ebe290db724d834696919722abc, type: 3}
+          m_Scale: {x: 1, y: -4}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
