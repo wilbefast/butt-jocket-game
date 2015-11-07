@@ -72,7 +72,7 @@ public class GameSystem : MonoBehaviour {
 				//active players
 				player1.GetComponent<Avatar>().active = false;
 				player2.GetComponent<Avatar>().active = false;
-				this.victoryText.color = new Color(1,0,0);
+				this.victoryText.color = new Color(1,1,1);
 				StartCoroutine(Victory(player));
 			}
 		}
@@ -92,7 +92,7 @@ public class GameSystem : MonoBehaviour {
 				//active players
 				player1.GetComponent<Avatar>().active = false;
 				player2.GetComponent<Avatar>().active = false;
-				this.victoryText.color = new Color(0,0,1);
+				this.victoryText.color = new Color(1,1,1);
 				StartCoroutine(Victory(player));
 			}
 		}
@@ -144,12 +144,12 @@ public class GameSystem : MonoBehaviour {
 		
 		if (this.player1Score > this.player2Score)
 		{
-			this.victoryText.color = new Color(0,0,1);
+			this.victoryText.color = new Color(1, 1, 1);
 			victoryText.text = "Wooster wins!";
 		}
 		else if (this.player1Score < this.player2Score)
 		{
-			this.victoryText.color = new Color(1,0,0);
+			this.victoryText.color = new Color(1, 1, 1);
 			victoryText.text = "Jeeves wins!";
 		}
 		else 

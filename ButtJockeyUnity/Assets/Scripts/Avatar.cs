@@ -9,6 +9,8 @@ public class Avatar : MonoBehaviour
 
 	public int playerID;
 
+	public GameObject respawnPoof;
+
 	
 	public float accelerationGain = 15f;
 	public float maxAcceleration = 30f;
@@ -129,6 +131,9 @@ public class Avatar : MonoBehaviour
 						                                   new Vector3(0f, 1f, 1f));
 						//GetComponent<Rigidbody>().velocity = leader.GetComponent<Rigidbody>().velocity;
 						GetComponent<Rigidbody>().AddForce(Vector3.forward * impulseRespawn,ForceMode.Impulse);
+
+						// poof !
+						Instantiate(respawnPoof, transform.position, Quaternion.identity);
 					}
 					else
 					{

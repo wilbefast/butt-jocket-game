@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 471ff07adf3eaee45b0c475123a6eeaf, type: 3}
     m_FontSize: 150
@@ -634,6 +634,10 @@ Prefab:
       propertyPath: m_Radius
       value: 1.29999995
       objectReference: {fileID: 0}
+    - target: {fileID: 11433128, guid: 7bd41522c4d2f5f4db2f151e0e6b408c, type: 2}
+      propertyPath: respawnPoof
+      value: 
+      objectReference: {fileID: 182972, guid: 30b8637b0ffa68e4886d35a3e8e0154b, type: 2}
     m_RemovedComponents:
     - {fileID: 19942848, guid: 7bd41522c4d2f5f4db2f151e0e6b408c, type: 2}
     - {fileID: 19851402, guid: 7bd41522c4d2f5f4db2f151e0e6b408c, type: 2}
@@ -2165,7 +2169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 471ff07adf3eaee45b0c475123a6eeaf, type: 3}
     m_FontSize: 150
@@ -3224,6 +3228,10 @@ Prefab:
       propertyPath: m_Radius
       value: 1.29999995
       objectReference: {fileID: 0}
+    - target: {fileID: 11433128, guid: 7bd41522c4d2f5f4db2f151e0e6b408c, type: 2}
+      propertyPath: respawnPoof
+      value: 
+      objectReference: {fileID: 182972, guid: 30b8637b0ffa68e4886d35a3e8e0154b, type: 2}
     m_RemovedComponents:
     - {fileID: 19942848, guid: 7bd41522c4d2f5f4db2f151e0e6b408c, type: 2}
     - {fileID: 19851402, guid: 7bd41522c4d2f5f4db2f151e0e6b408c, type: 2}
