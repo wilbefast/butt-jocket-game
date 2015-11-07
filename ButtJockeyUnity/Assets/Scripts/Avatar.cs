@@ -96,6 +96,8 @@ public class Avatar : MonoBehaviour
 			c.position = Vector3.Lerp(c.position, transform.position - cameraOffset, Time.fixedDeltaTime*3f);
 			life = 1f;
 
+			c.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().focalTransform = transform;
+
 			//GetComponent<ParticleSystem>().enableEmission = true;
 		}
 		else

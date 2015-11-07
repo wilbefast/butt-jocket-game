@@ -59,6 +59,7 @@ public class Menu : MonoBehaviour {
 
 		if (this.rSpank1 && this.lSpank1)
 		{
+			StopCoroutine("ChangeRace");
 			this.player1ReadyFeedback.sprite = this.playerIsReady;
 			this.player1ReadyFeedback.GetComponent<ShakeButtInterface>().ShakeInstant();
 			this.player1ready = true;
@@ -79,6 +80,7 @@ public class Menu : MonoBehaviour {
 		
 		if (this.rSpank2 && this.lSpank2)
 		{
+			StopCoroutine("ChangeRace");
 			this.player2ReadyFeedback.sprite = this.playerIsReady;
 			this.player2ReadyFeedback.GetComponent<ShakeButtInterface>().ShakeInstant();
 			this.player2ready = true;
@@ -89,30 +91,33 @@ public class Menu : MonoBehaviour {
 			Application.LoadLevel ("main");
 		} else {
 
-			if ((Input.GetButtonUp("RightSpank1") && !this.lSpank1) || (Input.GetButtonUp ("RightSpank2") && !this.lSpank2)) {
+			if ((Input.GetButtonDown("RightSpank1") && !this.lSpank1) || (Input.GetButtonDown ("RightSpank2") && !this.lSpank2)) {
 				this.nextRaceButton.GetComponent<ShakeButtInterface> ().ShakeInstant ();
-				ChangeRace (1);
+				StartCoroutine("ChangeRace",1);
 			}
 
-			if ((!this.rSpank1 && Input.GetButtonUp ("LeftSpank1")) || (!this.rSpank2 && Input.GetButtonUp ("LeftSpank2"))) {
+			if ((!this.rSpank1 && Input.GetButtonDown ("LeftSpank1")) || (!this.rSpank2 && Input.GetButtonDown ("LeftSpank2"))) {
 				this.prevRaceButton.GetComponent<ShakeButtInterface> ().ShakeInstant ();
-				ChangeRace (-1);	
+				StartCoroutine("ChangeRace",-1);	
 			}
 		}
 	}	
 
-	void OnGUI()
+	IEnumerator ChangeRace(int nextElement)
 	{
-		this.selectedRace.text = this.raceList [this.currentRace].name;
-	}
+		yield return new WaitForSeconds (0.25f);
 
-	void ChangeRace(int nextElement)
-	{
 		this.currentRace += nextElement;
-
+		
 		if (this.currentRace >= raceList.Length)
 			currentRace = 0;
 		else if (this.currentRace < 0)
 			currentRace = raceList.Length - 1;
 	}
+
+	void OnGUI()
+	{
+		this.selectedRace.text = this.raceList [this.currentRace].name;
+	}
+	
 }

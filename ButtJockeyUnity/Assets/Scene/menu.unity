@@ -911,6 +911,8 @@ MonoBehaviour:
   raceList:
   - {fileID: 115044, guid: 006b48281175ecd42b886842cf3b3daa, type: 2}
   - {fileID: 117026, guid: 8172979b3e09bfa4692b07affa87fb33, type: 2}
+  - {fileID: 153656, guid: 106d075055211d74685e76289057cebf, type: 2}
+  - {fileID: 127940, guid: 0ab2f8d819dbf4a479c1fba663c8c4f4, type: 2}
   currentRace: 0
 --- !u!4 &1714282045
 Transform:
