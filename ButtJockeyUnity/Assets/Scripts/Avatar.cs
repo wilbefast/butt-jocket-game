@@ -11,6 +11,8 @@ public class Avatar : MonoBehaviour
 
 	public GameObject respawnPoof;
 
+	public PopHand leftHand, rightHand;
+
 	
 	public float accelerationGain = 15f;
 	public float maxAcceleration = 30f;
@@ -56,15 +58,23 @@ public class Avatar : MonoBehaviour
 		if (!this.active)
 			return;
 
+		bool right = Input.GetButtonDown ("RightSpank" + playerID);
+		bool left = Input.GetButtonDown ("LeftSpank" + playerID);
+
 		//catch input
-		if (Input.GetButtonDown ("RightSpank" + playerID) || Input.GetButtonDown ("LeftSpank" + playerID)) 
+		if (right || left) 
 		{
 			if (this.value < 0f)
 				this.value = 0f;
 			
 			this.value += (this.maxAcceleration - this.value) * 0.5f; // do it log;
 
-			dir = new Vector2((Input.GetButtonDown("RightSpank"+this.playerID) ? -1f : 0f) + (Input.GetButtonDown("LeftSpank"+this.playerID) ? 1f : 0f),0f);
+			if(right)
+				rightHand.Pop();
+			if(left)
+				leftHand.Pop ();
+
+			dir = new Vector2((right ? -1f : 0f) + (left ? 1f : 0f),0f);
 
 			if (this.boostActive)
 				this.didBoost = true;
