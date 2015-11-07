@@ -29,15 +29,18 @@ public class Avatar : MonoBehaviour
 
 	bool IsDead()
 	{
-		return (transform.position.y < 0f);
+		return false;//return (transform.position.y < 0f);
 	}
 
 	void Start()
 	{
 		cameraOffset = transform.position - Camera.main.transform.position;
 
-		if (master == null)
+		if (master == null) 
+		{
 			master = this;
+			//LSD.instance.init();
+		}
 	}
 
 	

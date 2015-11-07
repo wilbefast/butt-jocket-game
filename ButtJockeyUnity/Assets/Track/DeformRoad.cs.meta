@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: dae1136c3a24cda43b7c636f6c4bdce4
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - start: {instanceID: 0}
+  - end: {instanceID: 0}
+  - originalMesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

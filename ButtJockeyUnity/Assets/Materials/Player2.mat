@@ -127,6 +127,14 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _X
+        second: .100000001
+      data:
+        first:
+          name: _Y
+        second: .100000001
     m_Colors:
       data:
         first:
