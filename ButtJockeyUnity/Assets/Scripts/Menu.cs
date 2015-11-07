@@ -31,8 +31,7 @@ public class Menu : MonoBehaviour {
 
 	IEnumerator  DeactivateBoolean(string boolean)
 	{
-		Debug.Log ("launch coroutine");
-		yield return new WaitForSeconds (0.25f);
+		yield return new WaitForSeconds (0.3f);
 		if (boolean == "r1")
 			this.rSpank1 = false;
 		else if (boolean == "l1")
@@ -90,12 +89,12 @@ public class Menu : MonoBehaviour {
 			Application.LoadLevel ("main");
 
 
-		if ((Input.GetButtonDown ("RightSpank1") && !Input.GetButtonDown ("LeftSpank1")) || (Input.GetButtonDown ("RightSpank2") && !Input.GetButtonDown ("LeftSpank2")))
+		if ((Input.GetButtonDown ("RightSpank1") && !this.lSpank1) || (Input.GetButtonDown ("RightSpank2") && !this.lSpank2))
 		{
 			this.nextRaceButton.GetComponent<ShakeButtInterface>().ShakeInstant();
 			ChangeRace(1);
 		}
-		else  if ((!Input.GetButtonDown ("RightSpank1") && Input.GetButtonDown ("LeftSpank1")) || (!Input.GetButtonDown ("RightSpank2") && Input.GetButtonDown ("LeftSpank2")))
+		else  if ((!this.rSpank1 && Input.GetButtonDown ("LeftSpank1")) || (!this.rSpank2 && Input.GetButtonDown ("LeftSpank2")))
 		{
 			this.prevRaceButton.GetComponent<ShakeButtInterface>().ShakeInstant();
 			ChangeRace(-1);	

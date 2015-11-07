@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11433128}
   - 198: {fileID: 19851402}
   - 199: {fileID: 19942848}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AvatarBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +97,7 @@ MonoBehaviour:
   accelerationGain: 15
   maxAcceleration: 30
   impulseBoost: 5
+  impulseRespawn: 5
   SideSpeed: 6
 --- !u!135 &13555164
 SphereCollider:
@@ -1195,7 +1196,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: impulseRespawn
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 195662}

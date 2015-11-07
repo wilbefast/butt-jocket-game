@@ -13,6 +13,7 @@ public class Avatar : MonoBehaviour
 	public float accelerationGain = 15f;
 	public float maxAcceleration = 30f;
 	public float impulseBoost = 5f;
+	public float impulseRespawn = 10f;
 
 	private bool didBoost = false;
 	private float value;
@@ -115,7 +116,8 @@ public class Avatar : MonoBehaviour
 					if(leader != null)
 					{
 						transform.position = leader.transform.position - Vector3.forward;
-						GetComponent<Rigidbody>().velocity = leader.GetComponent<Rigidbody>().velocity;
+						//GetComponent<Rigidbody>().velocity = leader.GetComponent<Rigidbody>().velocity;
+						GetComponent<Rigidbody>().AddForce(Vector3.forward *impulseRespawn,ForceMode.Impulse);
 					}
 					else
 					{
