@@ -174,7 +174,7 @@ public class GameSystem : MonoBehaviour {
 	{
 		if (this.countdownText != null)
 		{
-			this.countdownText.text = this.countdownValue > 0 ? this.countdownValue.ToString () : "GO!";
+			this.countdownText.text = this.countdownValue > 0 ? this.countdownValue.ToString () : "SPANK!";
 			
 			if (this.countdownValue <= 0 && !destructingCountdown)
 			{

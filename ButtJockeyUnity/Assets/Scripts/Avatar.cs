@@ -32,8 +32,12 @@ public class Avatar : MonoBehaviour
 		return false;//return (transform.position.y < 0f);
 	}
 
+	SpriteRenderer sprite;
+
 	void Start()
 	{
+		sprite = transform.parent.FindChild("Teleport").FindChild("SpriteOffset").GetComponentInChildren<SpriteRenderer> ();
+
 		cameraOffset = transform.position - Camera.main.transform.position;
 
 		if (master == null) 
@@ -92,13 +96,13 @@ public class Avatar : MonoBehaviour
 			c.position = Vector3.Lerp(c.position, transform.position - cameraOffset, Time.fixedDeltaTime*3f);
 			life = 1f;
 
-			GetComponent<ParticleSystem>().enableEmission = true;
+			//GetComponent<ParticleSystem>().enableEmission = true;
 		}
 		else
 		{
-			GetComponent<ParticleSystem>().enableEmission = false;
+			//GetComponent<ParticleSystem>().enableEmission = false;
 
-			if(GetComponent<Renderer>().isVisible)
+			if(sprite.isVisible)
 			{
 				// regenerate life
 				life = Mathf.Clamp01(life + Time.fixedDeltaTime);
