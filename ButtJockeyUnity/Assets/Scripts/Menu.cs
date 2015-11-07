@@ -31,7 +31,7 @@ public class Menu : MonoBehaviour {
 
 	IEnumerator  DeactivateBoolean(string boolean)
 	{
-		yield return new WaitForSeconds (0.3f);
+		yield return new WaitForSeconds (0.01f);
 		if (boolean == "r1")
 			this.rSpank1 = false;
 		else if (boolean == "l1")
@@ -85,19 +85,19 @@ public class Menu : MonoBehaviour {
 		}
 
 
-		if (this.player1ready && this.player2ready)
+		if (this.player1ready && this.player2ready) {
 			Application.LoadLevel ("main");
+		} else {
 
+			if ((Input.GetButtonUp("RightSpank1") && !this.lSpank1) || (Input.GetButtonUp ("RightSpank2") && !this.lSpank2)) {
+				this.nextRaceButton.GetComponent<ShakeButtInterface> ().ShakeInstant ();
+				ChangeRace (1);
+			}
 
-		if ((Input.GetButtonDown ("RightSpank1") && !this.lSpank1) || (Input.GetButtonDown ("RightSpank2") && !this.lSpank2))
-		{
-			this.nextRaceButton.GetComponent<ShakeButtInterface>().ShakeInstant();
-			ChangeRace(1);
-		}
-		else  if ((!this.rSpank1 && Input.GetButtonDown ("LeftSpank1")) || (!this.rSpank2 && Input.GetButtonDown ("LeftSpank2")))
-		{
-			this.prevRaceButton.GetComponent<ShakeButtInterface>().ShakeInstant();
-			ChangeRace(-1);	
+			if ((!this.rSpank1 && Input.GetButtonUp ("LeftSpank1")) || (!this.rSpank2 && Input.GetButtonUp ("LeftSpank2"))) {
+				this.prevRaceButton.GetComponent<ShakeButtInterface> ().ShakeInstant ();
+				ChangeRace (-1);	
+			}
 		}
 	}	
 
