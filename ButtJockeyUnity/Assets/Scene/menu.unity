@@ -119,8 +119,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 175, y: 30}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 175, y: 13}
+  m_SizeDelta: {x: 100, y: 163}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &11810393
 MonoBehaviour:
@@ -404,8 +404,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -175, y: 30}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -175, y: 13}
+  m_SizeDelta: {x: 100, y: 163}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &462597353
 MonoBehaviour:
@@ -906,7 +906,8 @@ MonoBehaviour:
   prevRaceButton: {fileID: 203777347}
   player1ReadyFeedback: {fileID: 462597353}
   player2ReadyFeedback: {fileID: 11810393}
-  playerIsReady: {fileID: 21300000, guid: 5e554985492cfbf48828c8cff9dff57a, type: 3}
+  player1IsReady: {fileID: 21300000, guid: a76ca1d6c689dc94193e595b21957b57, type: 3}
+  player2IsReady: {fileID: 21300000, guid: 2b2e6398f5ec105469252cbd6fb832b2, type: 3}
   selectedRace: {fileID: 1929865422}
   raceList:
   - {fileID: 115044, guid: 006b48281175ecd42b886842cf3b3daa, type: 2}

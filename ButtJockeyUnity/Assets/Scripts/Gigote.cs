@@ -9,6 +9,8 @@ public class Gigote : MonoBehaviour
 
 	public float timeOffset = 0f;
 
+	public float multiplier = 1f;
+
 	public bool position = true;
 	Vector3 initialPosition;
 
@@ -17,19 +19,21 @@ public class Gigote : MonoBehaviour
 
 	IEnumerator doGigote(float offset = 0f)
 	{
-		bool gonfle = true;
+		while (offset > 1f)
+			offset -= 1f;
 
-		yield return new WaitForSeconds (offset);
+		bool gonfle = true;
 
 		while (enabled) 
 		{
-			float start_t = Time.time;
+			float dur = duration / multiplier;
+
+			float start_t = Time.time + offset*duration;
 			float t = start_t;
-			while(t > duration)
-				t -= duration;
-			while(t <= start_t + duration)
+			offset = 0f;
+			while(t <= start_t + dur)
 			{
-				float progress = Mathf.Clamp01((t - start_t) / duration);
+				float progress = Mathf.Clamp01((t - start_t) / dur);
 
 				if(scale)
 					transform.localScale = initialScale *
@@ -40,8 +44,8 @@ public class Gigote : MonoBehaviour
 				if(position)
 					transform.localPosition = initialPosition + Vector3.up *
 						(gonfle 
-						 ? (1f + amount*progress) 
-						 : (1f + amount*(1f - progress)));
+						 ? (1f + multiplier*amount*progress) 
+						 : (1f + multiplier*amount*(1f - progress)));
 
 				t = Time.time;
 				yield return null;

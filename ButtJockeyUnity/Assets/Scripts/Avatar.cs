@@ -36,7 +36,7 @@ public class Avatar : MonoBehaviour
 
 	void Start()
 	{
-		sprite = transform.parent.FindChild("Teleport").FindChild("SpriteOffset").GetComponentInChildren<SpriteRenderer> ();
+		sprite = transform.parent.GetComponentInChildren<SpriteRenderer> ();
 
 		cameraOffset = transform.position - Camera.main.transform.position;
 
@@ -93,7 +93,8 @@ public class Avatar : MonoBehaviour
 		if (leader == this) 
 		{
 			var c = Camera.main.transform;
-			c.position = Vector3.Lerp(c.position, transform.position - cameraOffset, Time.fixedDeltaTime*3f);
+			c.position = Vector3.Lerp(c.position, Vector3.Scale(transform.position - cameraOffset,
+			                                                    new Vector3(0f, 1f, 1f)), Time.fixedDeltaTime*3f);
 			life = 1f;
 
 			c.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().focalTransform = transform;
@@ -124,9 +125,10 @@ public class Avatar : MonoBehaviour
 					// maybe leader is also dead
 					if(leader != null)
 					{
-						transform.position = leader.transform.position - Vector3.forward;
+						transform.position = Vector3.Scale(leader.transform.position - Vector3.forward, 
+						                                   new Vector3(0f, 1f, 1f));
 						//GetComponent<Rigidbody>().velocity = leader.GetComponent<Rigidbody>().velocity;
-						GetComponent<Rigidbody>().AddForce(Vector3.forward *impulseRespawn,ForceMode.Impulse);
+						GetComponent<Rigidbody>().AddForce(Vector3.forward * impulseRespawn,ForceMode.Impulse);
 					}
 					else
 					{
@@ -148,5 +150,9 @@ public class Avatar : MonoBehaviour
 		if (this.didBoost)
 			body.AddForce (transform.parent.forward * this.impulseBoost, ForceMode.Impulse);
 		this.didBoost = false;
+
+		// gigote
+		foreach (var g in transform.parent.GetComponentsInChildren<Gigote> ())
+			g.multiplier = 1f + body.velocity.magnitude / 10f;
 	}
 }

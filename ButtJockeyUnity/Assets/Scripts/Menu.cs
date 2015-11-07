@@ -9,7 +9,8 @@ public class Menu : MonoBehaviour {
 	public UnityEngine.UI.Image player1ReadyFeedback;
 	public UnityEngine.UI.Image player2ReadyFeedback;
 
-	public Sprite playerIsReady;
+	public Sprite player1IsReady;
+	public Sprite player2IsReady;
 
 	public UnityEngine.UI.Text selectedRace;
 	public GameObject[] raceList;
@@ -60,7 +61,7 @@ public class Menu : MonoBehaviour {
 		if (this.rSpank1 && this.lSpank1)
 		{
 			StopCoroutine("ChangeRace");
-			this.player1ReadyFeedback.sprite = this.playerIsReady;
+			this.player1ReadyFeedback.sprite = this.player1IsReady;
 			this.player1ReadyFeedback.GetComponent<ShakeButtInterface>().ShakeInstant();
 			this.player1ready = true;
 		}
@@ -81,7 +82,7 @@ public class Menu : MonoBehaviour {
 		if (this.rSpank2 && this.lSpank2)
 		{
 			StopCoroutine("ChangeRace");
-			this.player2ReadyFeedback.sprite = this.playerIsReady;
+			this.player2ReadyFeedback.sprite = this.player2IsReady;
 			this.player2ReadyFeedback.GetComponent<ShakeButtInterface>().ShakeInstant();
 			this.player2ready = true;
 		}

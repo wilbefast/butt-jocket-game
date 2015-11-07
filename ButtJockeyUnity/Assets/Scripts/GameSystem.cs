@@ -101,7 +101,7 @@ public class GameSystem : MonoBehaviour {
 	IEnumerator Victory(string player)
 	{
 		//gameEnded = true;
-		victoryText.text = player + " wins!";
+		victoryText.text = (player == "Player1" ? "Wooster" : "Jeeves") + " wins!";
 		victoryText.gameObject.SetActive(true);
 		
 		yield return new WaitForSeconds (3f);
@@ -145,12 +145,12 @@ public class GameSystem : MonoBehaviour {
 		if (this.player1Score > this.player2Score)
 		{
 			this.victoryText.color = new Color(0,0,1);
-			victoryText.text = "Player 1 wins!";
+			victoryText.text = "Wooster wins!";
 		}
 		else if (this.player1Score < this.player2Score)
 		{
 			this.victoryText.color = new Color(1,0,0);
-			victoryText.text = "Player 2 wins!";
+			victoryText.text = "Jeeves wins!";
 		}
 		else 
 			victoryText.text = "Draw!";
