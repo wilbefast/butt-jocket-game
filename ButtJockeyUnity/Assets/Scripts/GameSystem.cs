@@ -7,6 +7,8 @@ public class GameSystem : MonoBehaviour {
 	public Sprite p1points;
 	public Sprite p2points;
 
+	public GameObject defaultTrack;
+
 	public int totalPoint = 6;
 	private int player1Score = 0;
 	private int player2Score = 0;
@@ -26,9 +28,18 @@ public class GameSystem : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//instantiate race
-		Menu menu = GameObject.Find ("race container").GetComponent<Menu> ();
-		Instantiate(menu.raceList[menu.currentRace],Vector3.zero,Quaternion.identity);
-		Destroy (menu.gameObject);
+		GameObject raceContainer = GameObject.Find ("race container");
+		if (raceContainer == null) 
+		{
+			defaultTrack.SetActive(true);
+		}
+		else
+		{
+			Menu menu = GameObject.Find ("race container").GetComponent<Menu> ();
+			Instantiate(menu.raceList[menu.currentRace],Vector3.zero,Quaternion.identity);
+			Destroy (menu.gameObject);
+
+		}
 
 		this.player1Score = Mathf.RoundToInt(this.totalPoint / 2);
 		this.player2Score = Mathf.RoundToInt(this.totalPoint / 2);
