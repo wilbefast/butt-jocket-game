@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PopHand : MonoBehaviour 
 {
+	public AudioClip slap;
 	public float duration = 0.3f;
 
 	IEnumerator PopAndFade()
@@ -29,8 +30,18 @@ public class PopHand : MonoBehaviour
 
 	public void Pop()
 	{
-		StopAllCoroutines ();
-		StartCoroutine (PopAndFade ());
+		GameObject slapSource = new GameObject ();
+		slapSource.AddComponent<AudioSource>();
+		slapSource.GetComponent<AudioSource>().PlayOneShot(slap);
+		StopCoroutine ("PopAndFade");
+		StartCoroutine ("PopAndFade");
+		StartCoroutine ("RemoveSource", slapSource);
+	}
+
+	IEnumerator RemoveSource(GameObject slapSource)
+	{
+		yield return new WaitForSeconds (0.5f);
+		Destroy (slapSource);
 	}
 
 	void Start()

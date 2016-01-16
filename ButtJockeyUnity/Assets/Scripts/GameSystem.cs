@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class GameSystem : MonoBehaviour {
-	
+
+	public AudioClip spankSound;
+	public AudioClip countSound;
+
 	public UnityEngine.UI.Image[] pointCounters;
 	public Sprite p1points;
 	public Sprite p2points;
@@ -124,8 +127,10 @@ public class GameSystem : MonoBehaviour {
 		int iteration = this.countdownValue;
 		for (int i = 0; i < iteration; i++)
 		{
+			this.GetComponent<AudioSource>().Play();
 			yield return new WaitForSeconds (1);
 			this.countdownValue--;
+		
 			//let the countdown blinck
 		}
 		
@@ -175,9 +180,10 @@ public class GameSystem : MonoBehaviour {
 		if (this.countdownText != null)
 		{
 			this.countdownText.text = this.countdownValue > 0 ? this.countdownValue.ToString () : "SPANK!";
-			
+
 			if (this.countdownValue <= 0 && !destructingCountdown)
 			{
+				this.GetComponent<AudioSource>().Play();
 				destructingCountdown = true;
 				StartCoroutine("DestroyCountdown");
 			}

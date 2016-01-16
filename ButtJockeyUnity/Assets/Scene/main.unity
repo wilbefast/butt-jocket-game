@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffe50950c1acc54eb662c3fb5de51e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slap: {fileID: 8300000, guid: 2a7432cc3d5fcec4d93f02c1a2ebebcd, type: 3}
   duration: .400000006
 --- !u!1 &231350902
 GameObject:
@@ -2072,6 +2073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffe50950c1acc54eb662c3fb5de51e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slap: {fileID: 8300000, guid: 2a7432cc3d5fcec4d93f02c1a2ebebcd, type: 3}
   duration: .400000006
 --- !u!1 &1128096762
 GameObject:
@@ -2939,6 +2941,79 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!1 &1478633657 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 103172, guid: 79ca391444351534e9e5dcaadd41f21a, type: 2}
+  m_PrefabInternal: {fileID: 1559574357}
+--- !u!82 &1478633665
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1478633657}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2a7432cc3d5fcec4d93f02c1a2ebebcd, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1496327675
 GameObject:
   m_ObjectHideFlags: 0
@@ -3005,6 +3080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffe50950c1acc54eb662c3fb5de51e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slap: {fileID: 8300000, guid: 2a7432cc3d5fcec4d93f02c1a2ebebcd, type: 3}
   duration: .400000006
 --- !u!43 &1506309838
 Mesh:
@@ -3444,6 +3520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffe50950c1acc54eb662c3fb5de51e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slap: {fileID: 8300000, guid: 2a7432cc3d5fcec4d93f02c1a2ebebcd, type: 3}
   duration: .400000006
 --- !u!1001 &1898126881
 Prefab:

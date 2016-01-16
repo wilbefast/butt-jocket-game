@@ -134,6 +134,7 @@ public class Avatar : MonoBehaviour
 					// death and respawn
 					life = 1f;
 
+
 					// maybe leader is also dead
 					if(leader != null)
 					{
@@ -141,7 +142,7 @@ public class Avatar : MonoBehaviour
 						                                   new Vector3(0f, 1f, 1f));
 						//GetComponent<Rigidbody>().velocity = leader.GetComponent<Rigidbody>().velocity;
 						GetComponent<Rigidbody>().AddForce(Vector3.forward * impulseRespawn,ForceMode.Impulse);
-
+						GetComponent<Rigidbody>().velocity = Vector3.Scale(GetComponent<Rigidbody>().velocity,new Vector3(0,0,1));
 						// poof !
 						Instantiate(respawnPoof, transform.position, Quaternion.identity);
 					}
